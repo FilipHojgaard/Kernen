@@ -10,19 +10,20 @@ public class Kernen_script : MonoBehaviour
     int points = 0;
     public static int coins = 0;
     public static int highscore = 0;
+    public static int highest_streak;
     int streak = 0;
 
     // SHIELD
     int max_shield_integrety = 100;
     int shield_integrety;
-    public int shield_level = 0;
-    int[] shield_levels_cost = { 0, 50, 120, 300, 500, 1000, 3000};
-    int[] shield_levels_effect = {100, 150, 300, 450, 600, 750, 1000 };
+    public static int shield_level = 0;
+    public static int[] shield_levels_cost = { 0, 50, 120, 300, 500, 1000, 3000};
+    public static int[] shield_levels_effect = {100, 150, 300, 450, 600, 750, 1000 };
 
     // SPEED
-    public int speed_level;
-    int[] speed_levels_cost = { 0, 100, 200, 400, 800, 1200, 1500 };
-    int[] speed_levels_effect = {60, 65, 70, 75, 80, 85, 90};
+    public static int speed_level;
+    public static int[] speed_levels_cost = { 0, 100, 200, 400, 800, 1200, 1500 };
+    public static int[] speed_levels_effect = {60, 65, 70, 75, 80, 85, 90};
 
     // LEVELS
     public int levels_unlocked = 1;
@@ -60,6 +61,13 @@ public class Kernen_script : MonoBehaviour
         
     }
 
+    public void buy_shield_upgrade() {
+        if (coins >= shield_levels_cost[shield_level + 1]) {
+            coins -= shield_levels_cost[shield_level + 1];
+            shield_level++;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("energy")) {
             Destroy(other.gameObject);
@@ -77,6 +85,9 @@ public class Kernen_script : MonoBehaviour
             points += pts;
             streak += pts;
             coins += pts;
+            if (streak > highest_streak) {
+                highest_streak = streak;
+            }
             Debug.Log("STREAK: " + streak);
         }
     }
@@ -92,11 +103,13 @@ public class Kernen_script : MonoBehaviour
         SaveSystem.SaveGame(this);
     }
 
+
     public void loadGame() {
         SaveData data = SaveSystem.LoadGame();
         shield_level = data.shield_level;
         speed_level = data.speed_level;
         levels_unlocked = data.levels_unlocked;
         coins = data.energy;
+        highest_streak = data.highest_streak;
     }
 }
