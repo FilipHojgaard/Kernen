@@ -8,7 +8,7 @@ public class Kernen_script : MonoBehaviour
     public GameObject mainMenu;
 
     int points = 0;
-    public static int coins = 0;
+    public static int coins = 5000;
     public static int highscore = 0;
     public static int highest_streak;
     int streak = 0;
@@ -109,13 +109,17 @@ public class Kernen_script : MonoBehaviour
     }
 
     public void increaseLevel() {
+        Debug.Log(current_level);
         if (levels_unlocked > current_level) {
             current_level++;
+            Debug.Log(current_level);
         }
     }
     public void decreaseLevel() {
+        Debug.Log(current_level);
         if (current_level > 1) {
             current_level--;
+            Debug.Log(current_level);
         }
     }
 

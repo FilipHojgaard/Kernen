@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
 
     public UnityEngine.UI.Text highest_streak;
 
+    public UnityEngine.UI.Text currentLevel;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         highest_streak.text = "Highest Streak: " + Kernen_script.highest_streak;
+        currentLevel.text = "Level " + Kernen_script.current_level;
     }
 
     public void restart() {

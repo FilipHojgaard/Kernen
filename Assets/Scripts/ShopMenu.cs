@@ -20,6 +20,11 @@ public class ShopMenu : MonoBehaviour
     public UnityEngine.UI.Text current_speed_level;
     public UnityEngine.UI.Text current_speed;
 
+    // LEVELS
+    public UnityEngine.UI.Text next_level;
+    public UnityEngine.UI.Text next_level_cost;
+    public UnityEngine.UI.Text current_level;
+
     public GameObject MainMenu;
     // Start is called before the first frame update
     void Start()
@@ -42,6 +47,11 @@ public class ShopMenu : MonoBehaviour
         next_speed_cost.text = "Cost: " + Kernen_script.speed_levels_cost[Kernen_script.speed_level + 1];
         current_speed_level.text = "Speed Level: " + (Kernen_script.speed_level + 1);
         current_speed.text = "Speed: " + Kernen_script.speed_levels_effect[Kernen_script.speed_level];
+        // LEVEL LABELS
+        next_level.text = "Next Level: " + (Kernen_script.levels_unlocked + 1);
+        next_level_cost.text = "Cost: " + Kernen_script.level_cost[Kernen_script.levels_unlocked+1];
+        current_level.text = "At Level: " + Kernen_script.levels_unlocked;
+        
     }
 
     public void Back() {
