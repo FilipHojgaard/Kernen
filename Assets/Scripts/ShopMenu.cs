@@ -5,12 +5,20 @@ using UnityEngine.UI;
 
 public class ShopMenu : MonoBehaviour
 {
+    // ENERGY
     public UnityEngine.UI.Text energyAmountText;
 
-    public UnityEngine.UI.Text current_shield;
+    // SHIELD
     public UnityEngine.UI.Text next_shield;
     public UnityEngine.UI.Text next_shield_cost;
+    public UnityEngine.UI.Text current_shield_level;
+    public UnityEngine.UI.Text current_shield;
 
+    // SPEED
+    public UnityEngine.UI.Text next_speed;
+    public UnityEngine.UI.Text next_speed_cost;
+    public UnityEngine.UI.Text current_speed_level;
+    public UnityEngine.UI.Text current_speed;
 
     public GameObject MainMenu;
     // Start is called before the first frame update
@@ -22,11 +30,18 @@ public class ShopMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ENERGY LABELS
         energyAmountText.text = "ENERGY: " + Kernen_script.coins;
-        current_shield.text = "Shield: " + Kernen_script.shield_levels_effect[Kernen_script.shield_level];
+        // SHIELD LABELS
         next_shield.text = "Next Shield: " + Kernen_script.shield_levels_effect[Kernen_script.shield_level + 1];
         next_shield_cost.text = "Cost: " + Kernen_script.shield_levels_cost[Kernen_script.shield_level + 1];
-        Debug.Log(Kernen_script.coins);
+        current_shield_level.text = "Shield Level: " + (Kernen_script.shield_level+1);
+        current_shield.text = "Shield: " + Kernen_script.shield_levels_effect[Kernen_script.shield_level];
+        // SPEED LABELS
+        next_speed.text = "Next Speed:" + Kernen_script.speed_levels_effect[Kernen_script.speed_level+1];
+        next_speed_cost.text = "Cost: " + Kernen_script.speed_levels_cost[Kernen_script.speed_level + 1];
+        current_speed_level.text = "Speed Level: " + (Kernen_script.speed_level + 1);
+        current_speed.text = "Speed: " + Kernen_script.speed_levels_effect[Kernen_script.speed_level];
     }
 
     public void Back() {

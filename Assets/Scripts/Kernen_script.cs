@@ -18,15 +18,17 @@ public class Kernen_script : MonoBehaviour
     int shield_integrety;
     public static int shield_level = 0;
     public static int[] shield_levels_cost = { 0, 50, 120, 300, 500, 1000, 3000};
-    public static int[] shield_levels_effect = {100, 150, 300, 450, 600, 750, 1000 };
+    public static int[] shield_levels_effect = {60, 100, 180, 230, 300, 400, 600 };
 
     // SPEED
     public static int speed_level;
     public static int[] speed_levels_cost = { 0, 100, 200, 400, 800, 1200, 1500 };
-    public static int[] speed_levels_effect = {60, 65, 70, 75, 80, 85, 90};
+    public static int[] speed_levels_effect = {40, 48, 55, 63, 70, 85, 90};
 
     // LEVELS
-    public int levels_unlocked = 1;
+    public static int levels_unlocked = 1;
+    public static int current_level = 1;
+    public static int[] level_cost = { 0, 150, 400, 800, 1500 };
 
     public AudioSource energy_collected_sfx;
     public AudioSource energy_collected_5_sfx;
@@ -68,6 +70,13 @@ public class Kernen_script : MonoBehaviour
         }
     }
 
+    public void buy_speed_upgrade() {
+        if (coins >= speed_levels_cost[speed_level + 1]) {
+            coins -= speed_levels_cost[speed_level + 1];
+            speed_level++;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("energy")) {
             Destroy(other.gameObject);
@@ -99,17 +108,38 @@ public class Kernen_script : MonoBehaviour
         streak = 0;
     }
 
+    public void increaseLevel() {
+        if (levels_unlocked > current_level) {
+            current_level++;
+        }
+    }
+    public void decreaseLevel() {
+        if (current_level > 1) {
+            current_level--;
+        }
+    }
+
+    public void buyLevel() {
+        if (coins >= level_cost[current_level + 1]) {
+            coins -= level_cost[current_level + 1];
+            levels_unlocked++;
+            current_level = levels_unlocked;
+        }
+    }
+
     public void saveGame() {
         SaveSystem.SaveGame(this);
     }
 
 
     public void loadGame() {
-        SaveData data = SaveSystem.LoadGame();
-        shield_level = data.shield_level;
-        speed_level = data.speed_level;
-        levels_unlocked = data.levels_unlocked;
-        coins = data.energy;
-        highest_streak = data.highest_streak;
+        if (File.Exists(Application.persistentDataPath + "/savedData.ker")) {
+            SaveData data = SaveSystem.LoadGame();
+            shield_level = data.shield_level;
+            speed_level = data.speed_level;
+            levels_unlocked = data.levels_unlocked;
+            coins = data.energy;
+            highest_streak = data.highest_streak;
+        }
     }
 }

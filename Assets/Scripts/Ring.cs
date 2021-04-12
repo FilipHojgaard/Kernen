@@ -27,7 +27,7 @@ public class Ring : MonoBehaviour
 
     void FixedUpdate() {
         if (active) {
-            body.rotation -= active_speed * direction * Time.deltaTime;
+            body.rotation -= Kernen_script.speed_levels_effect[Kernen_script.speed_level] * direction * Time.deltaTime;
         }
         else {
             body.rotation -= cruise_speed * direction * Time.deltaTime;
@@ -41,7 +41,7 @@ public class Ring : MonoBehaviour
         if (clockwise) {direction = 1f;}else{direction = -1f;}
         
         // Press space or touch screen
-        if (Input.GetKey(KeyCode.Space)) {active = true;}else {active = false;}
+        if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0) {active = true;}else {active = false;}
 
 
     }

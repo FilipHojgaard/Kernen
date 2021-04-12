@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
         restart();
         Spawner.SetActive(false);
         LevelLoader.SetActive(false);
-        Kernen.SetActive(false);
+        //Kernen.SetActive(false);
         Kernen.GetComponent<Kernen_script>().Reset();
         gameObject.SetActive(true);
         highest_streak.text = "Highest Streak: " + Kernen_script.highest_streak;
@@ -36,14 +36,14 @@ public class MainMenu : MonoBehaviour
     public void restart() {
         Spawner.SetActive(false);
         LevelLoader.SetActive(false);
-        Kernen.SetActive(false);
+        //Kernen.SetActive(false);
         gameObject.SetActive(true);
     }
 
     public void PlayButton() {
         Spawner.SetActive(true);
         LevelLoader.SetActive(true);
-        Kernen.SetActive(true);
+        //Kernen.SetActive(true);
         gameObject.SetActive(false);
     }
 
