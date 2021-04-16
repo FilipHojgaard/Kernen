@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         highest_streak.text = "Highest Streak: " + Kernen_script.highest_streak;
-        currentLevel.text = "Level " + Kernen_script.current_level;
+        currentLevel.text = "Level " + (Kernen_script.current_level+1);
     }
 
     public void restart() {

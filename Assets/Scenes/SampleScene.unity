@@ -3300,8 +3300,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn: 1
   energy: {fileID: 4784117075371813416, guid: b0aca5fee4c50dc4a801004ef312ed5f, type: 3}
+  red_energy: {fileID: 3149400430341682032, guid: 20ff1c6bab83a5441bad6560f8477e3a,
+    type: 3}
   spawn_delay: 1.3
   spawn_chance: 100
+  red_energy_spawn: 1
+  red_energy_change: 50
 --- !u!4 &1556447328
 Transform:
   m_ObjectHideFlags: 0

@@ -29,13 +29,13 @@ public class LevelLoader : MonoBehaviour {
 
     public void prepareLevel() {
         removeRings();
-        if (Kernen_script.current_level == 1) {
+        if (Kernen_script.current_level == 0) {
             level1();
         }
-        else if(Kernen_script.current_level == 2) {
+        else if(Kernen_script.current_level == 1) {
             level2();
         }
-        else if(Kernen_script.current_level == 3) {
+        else if(Kernen_script.current_level == 2) {
             level3();
         }
     }
@@ -51,19 +51,42 @@ public class LevelLoader : MonoBehaviour {
 
             if (load_mid_ring) {
                 GameObject ring_mid = Instantiate(mid_rings[mid_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
-                ring_mid.GetComponent<Ring>().clockwise = true;
+                Ring ring_mid_script = ring_mid.GetComponent<Ring>();
+                ring_mid_script.clockwise = true;
+                ring_mid_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level];
+                ring_mid_script.cruise_speed = 10f;
             }
             if (load_inner_ring) {
                 GameObject inner_ring = Instantiate(inner_rings[inner_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
-                inner_ring.GetComponent<Ring>().clockwise = false;
+                Ring ring_inner_script = inner_ring.GetComponent<Ring>();
+                ring_inner_script.clockwise = false;
+                ring_inner_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level]*0.95f;
+                ring_inner_script.cruise_speed = 10f;
             }
 
             spawner_script.spawn_chance = 100f;
-            spawner_script.spawn_delay = 4f;
+            spawner_script.spawn_delay = 3.5f;
         }
     }
 
     void level2() {
+        if (loadLevel) {
+            int inner_ring_index = Random.Range(0, inner_rings.Length);
+
+            if (load_inner_ring) {
+                GameObject inner_ring = Instantiate(inner_rings[inner_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
+                Ring ring_inner_script = inner_ring.GetComponent<Ring>();
+                ring_inner_script.clockwise = true;
+                ring_inner_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level];
+                ring_inner_script.cruise_speed = 10f;
+            }
+
+            spawner_script.spawn_chance = 100f;
+            spawner_script.spawn_delay = 1.2f;
+        }
+    }
+
+    void level3() {
         if (loadLevel) {
             load_inner_ring = true;
             load_mid_ring = true;
@@ -91,18 +114,7 @@ public class LevelLoader : MonoBehaviour {
         }
     }
 
-    void level3() {
-        if (loadLevel) {
-            int inner_ring_index = Random.Range(0, inner_rings.Length);
 
-            if (load_inner_ring) {
-                Instantiate(inner_rings[inner_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
-            }
-
-            spawner_script.spawn_chance = 100f;
-            spawner_script.spawn_delay = 1.2f;
-        }
-    }
     // Update is called once per frame
     void Update()
     {

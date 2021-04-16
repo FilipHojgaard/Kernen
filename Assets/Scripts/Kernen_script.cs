@@ -8,7 +8,7 @@ public class Kernen_script : MonoBehaviour
     public GameObject mainMenu;
 
     int points = 0;
-    public static int coins = 5000;
+    public static int coins = 0;
     public static int highscore = 0;
     public static int highest_streak;
     int streak = 0;
@@ -18,17 +18,17 @@ public class Kernen_script : MonoBehaviour
     int shield_integrety;
     public static int shield_level = 0;
     public static int[] shield_levels_cost = { 0, 50, 120, 300, 500, 1000, 3000};
-    public static int[] shield_levels_effect = {60, 100, 180, 230, 300, 400, 600 };
+    public static int[] shield_levels_effect = {60, 100, 150, 200, 250, 300, 400 };
 
     // SPEED
-    public static int speed_level;
-    public static int[] speed_levels_cost = { 0, 100, 200, 400, 800, 1200, 1500 };
-    public static int[] speed_levels_effect = {40, 48, 55, 63, 70, 85, 90};
+    public static int speed_level = 5;
+    public static int[] speed_levels_cost = { 0, 10, 25, 50, 150, 200, 1400 };
+    public static int[] speed_levels_effect = {18, 22, 28, 35, 40, 45, 50};
 
     // LEVELS
-    public static int levels_unlocked = 1;
-    public static int current_level = 1;
-    public static int[] level_cost = { 0, 150, 400, 800, 1500 };
+    public static int levels_unlocked = 0;
+    public static int current_level = 0;
+    public static int[] level_cost = { 0, 150, 400, 800, 1500};
 
     public AudioSource energy_collected_sfx;
     public AudioSource energy_collected_5_sfx;
@@ -60,6 +60,11 @@ public class Kernen_script : MonoBehaviour
         for (int i = 0; i < all_energy.Length; i++) {
             Destroy(all_energy[i]);
         }
+        GameObject[] all_red_energy = GameObject.FindGameObjectsWithTag("red_energy");
+        for (int i = 0; i < all_red_energy.Length; i++) {
+            Destroy(all_red_energy[i]);
+
+        }
         
     }
 
@@ -80,27 +85,39 @@ public class Kernen_script : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("energy")) {
             Destroy(other.gameObject);
+            energy_collect();
 
-            int pts;
-
-            if (streak >= 5) {
-                energy_collected_5_sfx.Play();
-                pts = 2;
-            }
-            else {
-                energy_collected_sfx.Play();
-                pts = 1;
-            }
-            points += pts;
-            streak += pts;
-            coins += pts;
-            if (streak > highest_streak) {
-                highest_streak = streak;
-            }
-            Debug.Log("STREAK: " + streak);
+        }
+        else if (other.CompareTag("red_energy")) {
+            Destroy(other.gameObject);
+            shield_damage(50);
+            Debug.Log("RED ENERGY HIT");
         }
     }
 
+    public void energy_collect() {
+        int gained_coins;
+
+        if (streak >= 5) {
+            energy_collected_5_sfx.Play();
+            gained_coins = (current_level + 1) * 2;
+        }
+        else {
+            energy_collected_sfx.Play();
+            gained_coins = (current_level + 1);
+        }
+        points++;
+        streak++;
+        coins += gained_coins;
+        if (streak > highest_streak) {
+            highest_streak = streak;
+        }
+        if (points % 5 == 0) {
+            coins += (current_level + 1);
+            // SCREEN SPLASH EFFECT FOR EVERY 5 Coins.
+        }
+        Debug.Log("STREAK: " + streak);
+    }
 
     public void shield_damage(int dmg) {
         shield_integrety -= dmg;

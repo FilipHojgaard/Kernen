@@ -7,8 +7,11 @@ public class Spawner : MonoBehaviour
     public bool spawn = true;
 
     public GameObject energy;
-    public float spawn_delay = 5;
-    public float spawn_chance = 70;
+    public GameObject red_energy;
+    public float spawn_delay = 5f;
+    public float spawn_chance = 70f;
+    public bool red_energy_spawn;
+    public float red_energy_change = 10f;
 
     float y_min = -4;
     float y_max = 4;
@@ -50,6 +53,13 @@ public class Spawner : MonoBehaviour
             // Find y position
             float y = Random.Range(y_min, y_max);
 
+            if (red_energy_spawn) {
+                float red_energy_roll = Random.Range(0, 100);
+                if (red_energy_roll <= red_energy_change) {
+                    Instantiate(red_energy, new Vector2(x, y), gameObject.transform.rotation);
+                    return;
+                }
+            }
             Instantiate(energy, new Vector2(x, y), gameObject.transform.rotation);
         }
 

@@ -48,9 +48,9 @@ public class ShopMenu : MonoBehaviour
         current_speed_level.text = "Speed Level: " + (Kernen_script.speed_level + 1);
         current_speed.text = "Speed: " + Kernen_script.speed_levels_effect[Kernen_script.speed_level];
         // LEVEL LABELS
-        next_level.text = "Next Level: " + (Kernen_script.levels_unlocked + 1);
+        next_level.text = "Next Level: " + (Kernen_script.levels_unlocked + 2);
         next_level_cost.text = "Cost: " + Kernen_script.level_cost[Kernen_script.levels_unlocked+1];
-        current_level.text = "At Level: " + Kernen_script.levels_unlocked;
+        current_level.text = "At Level: " + (Kernen_script.levels_unlocked+1);
         
     }
 

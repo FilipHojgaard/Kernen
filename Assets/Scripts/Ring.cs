@@ -8,8 +8,8 @@ public class Ring : MonoBehaviour
 
     Rigidbody2D body;
 
-    public float cruise_speed = 10f;
-    public float active_speed = 60f;
+    public float cruise_speed;
+    public float active_speed;
     public bool clockwise = true;
     private float direction;
     private bool active = false;
@@ -52,6 +52,11 @@ public class Ring : MonoBehaviour
             Destroy(other.gameObject);
             kernen_obj.GetComponent<Kernen_script>().shield_damage(20);
             shield_hit_sfx.Play();
+        }
+        else if (other.CompareTag("red_energy")) {
+            kernen_obj = GameObject.Find("kernen");
+            Destroy(other.gameObject);
+            kernen_obj.GetComponent<Kernen_script>().energy_collect();
         }
     }
 }

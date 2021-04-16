@@ -7,6 +7,7 @@ TagManager:
   - kernen
   - energy
   - ring
+  - red_energy
   layers:
   - Default
   - TransparentFX
