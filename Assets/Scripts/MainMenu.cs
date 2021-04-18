@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
 
     public UnityEngine.UI.Text currentLevel;
 
+    public GameObject shieldbar;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class MainMenu : MonoBehaviour
         restart();
         Spawner.SetActive(false);
         LevelLoader.SetActive(false);
+        shieldbar.SetActive(false);
         //Kernen.SetActive(false);
         Kernen.GetComponent<Kernen_script>().Reset();
         gameObject.SetActive(true);
@@ -41,6 +43,7 @@ public class MainMenu : MonoBehaviour
         LevelLoader.SetActive(false);
         //Kernen.SetActive(false);
         gameObject.SetActive(true);
+        shieldbar.SetActive(false);
     }
 
     public void PlayButton() {
@@ -48,11 +51,13 @@ public class MainMenu : MonoBehaviour
         LevelLoader.SetActive(true);
         //Kernen.SetActive(true);
         gameObject.SetActive(false);
+        shieldbar.SetActive(true);
     }
 
     public void ShopButton() {
         shopMenu.SetActive(true);
         gameObject.SetActive(false);
+        shieldbar.SetActive(false);
     }
 
     public void ExitButton() {

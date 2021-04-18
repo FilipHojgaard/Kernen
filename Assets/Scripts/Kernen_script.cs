@@ -7,6 +7,8 @@ public class Kernen_script : MonoBehaviour
 {
     public GameObject mainMenu;
 
+    public Shieldbar shieldbar;
+
     int points = 0;
     public static int coins = 0;
     public static int highscore = 0;
@@ -21,7 +23,7 @@ public class Kernen_script : MonoBehaviour
     public static int[] shield_levels_effect = {60, 100, 150, 200, 250, 300, 400 };
 
     // SPEED
-    public static int speed_level = 5;
+    public static int speed_level = 0;
     public static int[] speed_levels_cost = { 0, 10, 25, 50, 150, 200, 1400 };
     public static int[] speed_levels_effect = {18, 22, 28, 35, 40, 45, 50};
 
@@ -29,6 +31,9 @@ public class Kernen_script : MonoBehaviour
     public static int levels_unlocked = 0;
     public static int current_level = 0;
     public static int[] level_cost = { 0, 150, 400, 800, 1500};
+
+    // COIN GAINS
+    public static int[] coin_gains_for_level = { 1, 1, 3, 5 };
 
     public AudioSource energy_collected_sfx;
     public AudioSource energy_collected_5_sfx;
@@ -54,6 +59,8 @@ public class Kernen_script : MonoBehaviour
 
     public void Reset() {
         shield_integrety = shield_levels_effect[shield_level];
+        shieldbar.setMaxShield(shield_integrety);
+        shieldbar.setShield(shield_integrety);
         points = 0;
         streak = 0;
         GameObject[] all_energy = GameObject.FindGameObjectsWithTag("energy");
@@ -100,11 +107,11 @@ public class Kernen_script : MonoBehaviour
 
         if (streak >= 5) {
             energy_collected_5_sfx.Play();
-            gained_coins = (current_level + 1) * 2;
+            gained_coins = coin_gains_for_level[current_level] * 2;
         }
         else {
             energy_collected_sfx.Play();
-            gained_coins = (current_level + 1);
+            gained_coins = coin_gains_for_level[current_level];
         }
         points++;
         streak++;
@@ -113,7 +120,7 @@ public class Kernen_script : MonoBehaviour
             highest_streak = streak;
         }
         if (points % 5 == 0) {
-            coins += (current_level + 1);
+            coins += coin_gains_for_level[current_level];
             // SCREEN SPLASH EFFECT FOR EVERY 5 Coins.
         }
         Debug.Log("STREAK: " + streak);
@@ -121,6 +128,7 @@ public class Kernen_script : MonoBehaviour
 
     public void shield_damage(int dmg) {
         shield_integrety -= dmg;
+        shieldbar.setShield(shield_integrety);
         Debug.Log("SHIELD INTEGRETY: " + shield_integrety);
         streak = 0;
     }
