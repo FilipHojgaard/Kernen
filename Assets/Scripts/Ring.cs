@@ -41,8 +41,20 @@ public class Ring : MonoBehaviour
         if (clockwise) {direction = 1f;}else{direction = -1f;}
         
         // Press space or touch screen
-        if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0) {active = true;}else {active = false;}
-
+        if (Input.GetKey(KeyCode.Space) || Input.touchCount == 1) {
+            Debug.Log("SPACE");
+            active = true;
+        }
+        else if (Input.GetKey(KeyCode.A) || Input.touchCount == 2) {
+            if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse && Kernen_script.available_ability_reverse) {
+                direction *= -1f;
+                active = true;
+                //Kernen_script.available_ability_reverse = false;
+            }
+        }
+        else {
+            active = false;
+        }
 
     }
 

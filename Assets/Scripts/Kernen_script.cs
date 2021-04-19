@@ -37,7 +37,14 @@ public class Kernen_script : MonoBehaviour
 
     public AudioSource energy_collected_sfx;
     public AudioSource energy_collected_5_sfx;
-    // Start is called before the first frame update
+
+    // ABILITIES
+    //reverse
+    public static bool bought_ability_reverse = true;
+    public static bool selected_ability_reverse = true;
+    public static bool available_ability_reverse = true;
+
+
     void Start()
     {
         shield_integrety = shield_levels_effect[shield_level];
@@ -169,6 +176,8 @@ public class Kernen_script : MonoBehaviour
             levels_unlocked = data.levels_unlocked;
             coins = data.energy;
             highest_streak = data.highest_streak;
+            bought_ability_reverse = data.bought_ability_reverse;
+            selected_ability_reverse = data.selected_ability_reverse;
         }
     }
 }
