@@ -66,6 +66,7 @@ public class LevelLoader : MonoBehaviour {
 
             spawner_script.spawn_chance = 100f;
             spawner_script.spawn_delay = 3.5f;
+            spawner_script.red_energy_spawn = false;
         }
     }
 
@@ -82,7 +83,12 @@ public class LevelLoader : MonoBehaviour {
             }
 
             spawner_script.spawn_chance = 100f;
-            spawner_script.spawn_delay = 1.2f;
+            spawner_script.spawn_delay = 2.2f;
+            spawner_script.red_energy_spawn = true;
+            spawner_script.red_energy_change = 20f;
+            spawner_script.reverse_energy_spawn = true;
+            spawner_script.reverse_energy_chance = 20f;
+
         }
     }
 

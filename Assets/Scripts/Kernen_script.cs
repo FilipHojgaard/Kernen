@@ -28,7 +28,7 @@ public class Kernen_script : MonoBehaviour
     public static int[] speed_levels_effect = {18, 22, 28, 35, 40, 45, 50};
 
     // LEVELS
-    public static int levels_unlocked = 0;
+    public static int levels_unlocked = 2;
     public static int current_level = 0;
     public static int[] level_cost = { 0, 150, 400, 800, 1500};
 
@@ -39,10 +39,12 @@ public class Kernen_script : MonoBehaviour
     public AudioSource energy_collected_5_sfx;
 
     // ABILITIES
+    public static float ability_cooldown = 0f;
     //reverse
     public static bool bought_ability_reverse = true;
     public static bool selected_ability_reverse = true;
-    public static bool available_ability_reverse = true;
+    public static int available_ability_reverse = 10;
+    public static bool ability_reverse_active = false;
 
 
     void Start()
@@ -77,9 +79,11 @@ public class Kernen_script : MonoBehaviour
         GameObject[] all_red_energy = GameObject.FindGameObjectsWithTag("red_energy");
         for (int i = 0; i < all_red_energy.Length; i++) {
             Destroy(all_red_energy[i]);
-
         }
-        
+        GameObject[] all_reverse_energy = GameObject.FindGameObjectsWithTag("reverse_energy");
+        for (int i = 0; i < all_reverse_energy.Length; i++) {
+            Destroy(all_reverse_energy[i]);
+        }
     }
 
     public void buy_shield_upgrade() {
@@ -106,6 +110,11 @@ public class Kernen_script : MonoBehaviour
             Destroy(other.gameObject);
             shield_damage(50);
             Debug.Log("RED ENERGY HIT");
+        }
+        else if (other.CompareTag("reverse_energy")) {
+            Destroy(other.gameObject);
+            available_ability_reverse++;
+            energy_collect();
         }
     }
 

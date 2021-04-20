@@ -39,18 +39,35 @@ public class Ring : MonoBehaviour
     {
         // Check for clockwise direction
         if (clockwise) {direction = 1f;}else{direction = -1f;}
-        
+
+        // Check for ability cooldowns
+        if (Kernen_script.ability_cooldown > 0f) {
+            Kernen_script.ability_cooldown -= Time.deltaTime;
+        }
+        else if(Kernen_script.ability_cooldown < 0f) {
+            Kernen_script.ability_reverse_active = false;
+            Kernen_script.ability_cooldown = 0f;
+        }
         // Press space or touch screen
         if (Input.GetKey(KeyCode.Space) || Input.touchCount == 1) {
             Debug.Log("SPACE");
             active = true;
         }
+
+
         else if (Input.GetKey(KeyCode.A) || Input.touchCount == 2) {
-            if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse && Kernen_script.available_ability_reverse) {
+            if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse && Kernen_script.available_ability_reverse > 0 && !Kernen_script.ability_reverse_active) {
+                Kernen_script.available_ability_reverse -= 1;
+                Kernen_script.ability_reverse_active = true;
+                Kernen_script.ability_cooldown = 2f;
                 direction *= -1f;
                 active = true;
-                //Kernen_script.available_ability_reverse = false;
             }
+            if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse && Kernen_script.ability_reverse_active && Kernen_script.ability_cooldown > 0f) {
+                direction *= -1f;
+                active = true;
+            }
+                //Kernen_script.available_ability_reverse = false;
         }
         else {
             active = false;
@@ -59,7 +76,7 @@ public class Ring : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("energy")) {
+        if (other.CompareTag("energy") || other.CompareTag("reverse_energy")) {
             kernen_obj = GameObject.Find("kernen");
             Destroy(other.gameObject);
             kernen_obj.GetComponent<Kernen_script>().shield_damage(20);

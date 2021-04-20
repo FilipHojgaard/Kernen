@@ -8,10 +8,15 @@ public class Spawner : MonoBehaviour
 
     public GameObject energy;
     public GameObject red_energy;
+    public GameObject reverse_energy;
     public float spawn_delay = 5f;
     public float spawn_chance = 70f;
+
     public bool red_energy_spawn;
     public float red_energy_change = 10f;
+
+    public bool reverse_energy_spawn;
+    public float reverse_energy_chance = 10f;
 
     float y_min = -4;
     float y_max = 4;
@@ -53,10 +58,16 @@ public class Spawner : MonoBehaviour
             // Find y position
             float y = Random.Range(y_min, y_max);
 
+            float other_spawn = Random.Range(0f, 100f);
+            Debug.Log(other_spawn);
             if (red_energy_spawn) {
-                float red_energy_roll = Random.Range(0, 100);
-                if (red_energy_roll <= red_energy_change) {
+                if (other_spawn <= red_energy_change) {
                     Instantiate(red_energy, new Vector2(x, y), gameObject.transform.rotation);
+                    return;
+                }
+            }if (reverse_energy_spawn) {
+                if (other_spawn <= (reverse_energy_chance + reverse_energy_chance)) {
+                    Instantiate(reverse_energy, new Vector2(x, y), gameObject.transform.rotation);
                     return;
                 }
             }

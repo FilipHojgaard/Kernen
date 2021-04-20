@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public GameObject shopMenu;
+    public GameObject abilityUI;
     
     public GameObject Spawner;
     public GameObject LevelLoader;
@@ -25,6 +26,7 @@ public class MainMenu : MonoBehaviour
         Spawner.SetActive(false);
         LevelLoader.SetActive(false);
         shieldbar.SetActive(false);
+        abilityUI.SetActive(false);
         //Kernen.SetActive(false);
         Kernen.GetComponent<Kernen_script>().Reset();
         gameObject.SetActive(true);
@@ -43,12 +45,14 @@ public class MainMenu : MonoBehaviour
         LevelLoader.SetActive(false);
         //Kernen.SetActive(false);
         gameObject.SetActive(true);
+        abilityUI.SetActive(false);
         shieldbar.SetActive(false);
     }
 
     public void PlayButton() {
         Spawner.SetActive(true);
         LevelLoader.SetActive(true);
+        abilityUI.SetActive(true);
         //Kernen.SetActive(true);
         gameObject.SetActive(false);
         shieldbar.SetActive(true);
@@ -56,6 +60,7 @@ public class MainMenu : MonoBehaviour
 
     public void ShopButton() {
         shopMenu.SetActive(true);
+        abilityUI.SetActive(false);
         gameObject.SetActive(false);
         shieldbar.SetActive(false);
     }
