@@ -10,7 +10,7 @@ public class Kernen_script : MonoBehaviour
     public Shieldbar shieldbar;
 
     int points = 0;
-    public static int coins = 0;
+    public static int coins = 10000;
     public static int highscore = 0;
     public static int highest_streak;
     int streak = 0;
@@ -28,7 +28,7 @@ public class Kernen_script : MonoBehaviour
     public static int[] speed_levels_effect = {18, 22, 28, 35, 40, 45, 50};
 
     // LEVELS
-    public static int levels_unlocked = 2;
+    public static int levels_unlocked = 1;
     public static int current_level = 0;
     public static int[] level_cost = { 0, 150, 400, 800, 1500};
 
@@ -41,10 +41,11 @@ public class Kernen_script : MonoBehaviour
     // ABILITIES
     public static float ability_cooldown = 0f;
     //reverse
-    public static bool bought_ability_reverse = true;
-    public static bool selected_ability_reverse = true;
-    public static int available_ability_reverse = 10;
+    public static bool bought_ability_reverse = false;
+    public static bool selected_ability_reverse = false;
+    public static int available_ability_reverse = 0;
     public static bool ability_reverse_active = false;
+    public static int reverse_cost = 1000;
 
 
     void Start()
@@ -169,6 +170,16 @@ public class Kernen_script : MonoBehaviour
             coins -= level_cost[current_level + 1];
             levels_unlocked++;
             current_level = levels_unlocked;
+        }
+    }
+
+    public void buy_or_select_reverse() {
+        if (!bought_ability_reverse && coins >= reverse_cost) {
+            coins -= reverse_cost;
+            bought_ability_reverse = true;
+            selected_ability_reverse = true;
+        }else if(bought_ability_reverse) {
+            selected_ability_reverse = !selected_ability_reverse;
         }
     }
 

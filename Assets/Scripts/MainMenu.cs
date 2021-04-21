@@ -52,10 +52,12 @@ public class MainMenu : MonoBehaviour
     public void PlayButton() {
         Spawner.SetActive(true);
         LevelLoader.SetActive(true);
-        abilityUI.SetActive(true);
         //Kernen.SetActive(true);
         gameObject.SetActive(false);
         shieldbar.SetActive(true);
+        if(Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse) {
+            abilityUI.SetActive(true);
+        }
     }
 
     public void ShopButton() {

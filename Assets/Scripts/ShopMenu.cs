@@ -25,6 +25,9 @@ public class ShopMenu : MonoBehaviour
     public UnityEngine.UI.Text next_level_cost;
     public UnityEngine.UI.Text current_level;
 
+    // Abilities
+    public UnityEngine.UI.Text reverseText;
+
     public GameObject MainMenu;
     // Start is called before the first frame update
     void Start()
@@ -51,7 +54,15 @@ public class ShopMenu : MonoBehaviour
         next_level.text = "Next Level: " + (Kernen_script.levels_unlocked + 2);
         next_level_cost.text = "Cost: " + Kernen_script.level_cost[Kernen_script.levels_unlocked+1];
         current_level.text = "At Level: " + (Kernen_script.levels_unlocked+1);
-        
+        // Abilities
+        if (!Kernen_script.bought_ability_reverse) {
+            reverseText.text = "Buy Reverse: " + Kernen_script.reverse_cost;
+        }else if (!Kernen_script.selected_ability_reverse) {
+            reverseText.text = "Use Reverse";
+        }
+        else {
+            reverseText.text = "Using Reverse";
+        }
     }
 
     public void Back() {
