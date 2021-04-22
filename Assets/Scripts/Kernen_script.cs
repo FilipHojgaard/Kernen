@@ -159,7 +159,7 @@ public class Kernen_script : MonoBehaviour
     }
     public void decreaseLevel() {
         Debug.Log(current_level);
-        if (current_level > 1) {
+        if (current_level > 0) {
             current_level--;
             Debug.Log(current_level);
         }
