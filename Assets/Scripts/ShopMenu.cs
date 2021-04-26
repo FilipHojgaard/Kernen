@@ -10,20 +10,14 @@ public class ShopMenu : MonoBehaviour
 
     // SHIELD
     public UnityEngine.UI.Text next_shield;
-    public UnityEngine.UI.Text next_shield_cost;
-    public UnityEngine.UI.Text current_shield_level;
-    public UnityEngine.UI.Text current_shield;
+    public UnityEngine.UI.Text shield_button_text;
 
     // SPEED
     public UnityEngine.UI.Text next_speed;
-    public UnityEngine.UI.Text next_speed_cost;
-    public UnityEngine.UI.Text current_speed_level;
-    public UnityEngine.UI.Text current_speed;
+    public UnityEngine.UI.Text speed_button_text;
 
     // LEVELS
-    public UnityEngine.UI.Text next_level;
-    public UnityEngine.UI.Text next_level_cost;
-    public UnityEngine.UI.Text current_level;
+    public UnityEngine.UI.Text level_button_text;
 
     // Abilities
     public UnityEngine.UI.Text reverseText;
@@ -39,21 +33,15 @@ public class ShopMenu : MonoBehaviour
     void Update()
     {
         // ENERGY LABELS
-        energyAmountText.text = "ENERGY: " + Kernen_script.coins;
+        energyAmountText.text = Kernen_script.coins.ToString();
         // SHIELD LABELS
-        next_shield.text = "Next Shield: " + Kernen_script.shield_levels_effect[Kernen_script.shield_level + 1];
-        next_shield_cost.text = "Cost: " + Kernen_script.shield_levels_cost[Kernen_script.shield_level + 1];
-        current_shield_level.text = "Shield Level: " + (Kernen_script.shield_level+1);
-        current_shield.text = "Shield: " + Kernen_script.shield_levels_effect[Kernen_script.shield_level];
+        next_shield.text = "Upgrade Shield\n" + Kernen_script.shield_levels_effect[Kernen_script.shield_level] + " > " + Kernen_script.shield_levels_effect[Kernen_script.shield_level+1];
+        shield_button_text.text = "Buy for " + Kernen_script.shield_levels_cost[Kernen_script.shield_level + 1];
         // SPEED LABELS
-        next_speed.text = "Next Speed:" + Kernen_script.speed_levels_effect[Kernen_script.speed_level+1];
-        next_speed_cost.text = "Cost: " + Kernen_script.speed_levels_cost[Kernen_script.speed_level + 1];
-        current_speed_level.text = "Speed Level: " + (Kernen_script.speed_level + 1);
-        current_speed.text = "Speed: " + Kernen_script.speed_levels_effect[Kernen_script.speed_level];
+        next_speed.text = "Upgrade Speed\n" + Kernen_script.speed_levels_effect[Kernen_script.speed_level] + " > " + Kernen_script.speed_levels_effect[Kernen_script.speed_level+1];
+        speed_button_text.text = "Buy for " + Kernen_script.speed_levels_cost[Kernen_script.speed_level + 1];
         // LEVEL LABELS
-        next_level.text = "Next Level: " + (Kernen_script.levels_unlocked + 2);
-        next_level_cost.text = "Cost: " + Kernen_script.level_cost[Kernen_script.levels_unlocked+1];
-        current_level.text = "At Level: " + (Kernen_script.levels_unlocked+1);
+        level_button_text.text = "Buy Level " + (Kernen_script.levels_unlocked+2) + " for " + Kernen_script.level_cost[Kernen_script.levels_unlocked + 1];
         // Abilities
         if (!Kernen_script.bought_ability_reverse) {
             reverseText.text = "Buy Reverse: " + Kernen_script.reverse_cost;

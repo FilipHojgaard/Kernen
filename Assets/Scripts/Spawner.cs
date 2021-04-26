@@ -65,8 +65,8 @@ public class Spawner : MonoBehaviour
                     Instantiate(red_energy, new Vector2(x, y), gameObject.transform.rotation);
                     return;
                 }
-            }if (reverse_energy_spawn) {
-                if (other_spawn <= (reverse_energy_chance + reverse_energy_chance)) {
+            }if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse) {
+                if (other_spawn <= (red_energy_change + reverse_energy_chance)) {
                     Instantiate(reverse_energy, new Vector2(x, y), gameObject.transform.rotation);
                     return;
                 }

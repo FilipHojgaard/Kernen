@@ -27,7 +27,7 @@ public class Ring : MonoBehaviour
 
     void FixedUpdate() {
         if (active) {
-            body.rotation -= Kernen_script.speed_levels_effect[Kernen_script.speed_level] * direction * Time.deltaTime;
+            body.rotation -= active_speed * direction * Time.deltaTime;
         }
         else {
             body.rotation -= cruise_speed * direction * Time.deltaTime;
