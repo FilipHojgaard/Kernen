@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
 
     public GameObject shieldbar;
 
+    public AudioSource generic_button;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,10 @@ public class MainMenu : MonoBehaviour
         abilityUI.SetActive(false);
         gameObject.SetActive(false);
         shieldbar.SetActive(false);
+    }
+
+    public void generic_button_sfx() {
+        generic_button.Play();
     }
 
     public void ExitButton() {

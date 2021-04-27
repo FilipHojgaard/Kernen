@@ -6,11 +6,11 @@ using System.IO;
 public class Kernen_script : MonoBehaviour
 {
     public GameObject mainMenu;
-
+    public GameObject sfx_manager;
     public Shieldbar shieldbar;
 
     int points = 0;
-    public static int coins = 0;
+    public static int coins = 10000;
     public static int highscore = 0;
     public static int highest_streak;
     int streak = 0;
@@ -85,6 +85,7 @@ public class Kernen_script : MonoBehaviour
         for (int i = 0; i < all_reverse_energy.Length; i++) {
             Destroy(all_reverse_energy[i]);
         }
+        sfx_manager.GetComponent<sfx_manager_script>().stop_ambient_music();
     }
 
     public void buy_shield_upgrade() {
