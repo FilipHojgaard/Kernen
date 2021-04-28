@@ -105,30 +105,36 @@ public class Kernen_script : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("energy")) {
             Destroy(other.gameObject);
-            energy_collect();
+            energy_collect(true);
 
         }
         else if (other.CompareTag("red_energy")) {
             Destroy(other.gameObject);
             shield_damage(50);
             Debug.Log("RED ENERGY HIT");
+            sfx_manager.GetComponent<sfx_manager_script>().play_shield_hit_sfx();
         }
         else if (other.CompareTag("reverse_energy")) {
             Destroy(other.gameObject);
             available_ability_reverse++;
-            energy_collect();
+            energy_collect(false);
+            sfx_manager.GetComponent<sfx_manager_script>().play_pickup_blue_sfx();
         }
     }
 
-    public void energy_collect() {
+    public void energy_collect(bool play_sound) {
         int gained_coins;
 
         if (streak >= 5) {
-            energy_collected_5_sfx.Play();
+            if (play_sound) {
+                energy_collected_5_sfx.Play();
+            }
             gained_coins = coin_gains_for_level[current_level] * 2;
         }
         else {
-            energy_collected_sfx.Play();
+            if (play_sound) {
+                energy_collected_sfx.Play();
+            }
             gained_coins = coin_gains_for_level[current_level];
         }
         points++;

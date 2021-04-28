@@ -69,7 +69,7 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.spawn_delay = 2.5f;
             spawner_script.red_energy_spawn = false;
             spawner_script.red_energy_change = 0f;
-            spawner_script.reverse_energy_chance = 10f;
+            spawner_script.reverse_energy_chance = 14f;
         }
     }
 
@@ -94,7 +94,7 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.red_energy_spawn = true;
             spawner_script.red_energy_change = 20f;
             spawner_script.reverse_energy_spawn = true;
-            spawner_script.reverse_energy_chance = 10f;
+            spawner_script.reverse_energy_chance = 14f;
 
         }
     }
@@ -124,11 +124,11 @@ public class LevelLoader : MonoBehaviour {
             }
 
             spawner_script.spawn_chance = 100f;
-            spawner_script.spawn_delay = 2f;
+            spawner_script.spawn_delay = 2.7f;
             spawner_script.red_energy_spawn = true;
             spawner_script.red_energy_change = 20f;
             spawner_script.reverse_energy_spawn = true;
-            spawner_script.reverse_energy_chance = 10f;
+            spawner_script.reverse_energy_chance = 20f;
 
         }
     }
@@ -166,11 +166,11 @@ public class LevelLoader : MonoBehaviour {
             }
 
             spawner_script.spawn_chance = 100f;
-            spawner_script.spawn_delay = 1.8f;
+            spawner_script.spawn_delay = 3.8f;
             spawner_script.red_energy_spawn = true;
             spawner_script.red_energy_change = 30f;
             spawner_script.reverse_energy_spawn = true;
-            spawner_script.reverse_energy_chance = 10f;
+            spawner_script.reverse_energy_chance = 35f;
         }
     }
 
@@ -193,9 +193,9 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.spawn_chance = 50f;
             spawner_script.spawn_delay = 1f;
             spawner_script.red_energy_spawn = true;
-            spawner_script.red_energy_change = 100;
+            spawner_script.red_energy_change = 90;
             spawner_script.reverse_energy_spawn = true;
-            spawner_script.reverse_energy_chance = 5f;
+            spawner_script.reverse_energy_chance = 10f;
         }
     }
 

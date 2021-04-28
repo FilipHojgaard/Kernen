@@ -16,6 +16,8 @@ public class Ring : MonoBehaviour
 
     GameObject kernen_obj;
 
+    public GameObject sfx_manager;
+
     public AudioSource shield_hit_sfx;
 
     // Start is called before the first frame update
@@ -59,13 +61,17 @@ public class Ring : MonoBehaviour
             if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse && Kernen_script.available_ability_reverse > 0 && !Kernen_script.ability_reverse_active) {
                 Kernen_script.available_ability_reverse -= 1;
                 Kernen_script.ability_reverse_active = true;
-                Kernen_script.ability_cooldown = 2f;
+                Kernen_script.ability_cooldown = 2.1f;
+                GameObject.Find("sfx_manager").GetComponent<sfx_manager_script>().play_use_reverse_sfx();
                 direction *= -1f;
                 active = true;
             }
-            if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse && Kernen_script.ability_reverse_active && Kernen_script.ability_cooldown > 0f) {
+            else if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse && Kernen_script.ability_reverse_active && Kernen_script.ability_cooldown > 0f) {
                 direction *= -1f;
                 active = true;
+            }
+            else {
+                active = false;
             }
                 //Kernen_script.available_ability_reverse = false;
         }
@@ -85,7 +91,7 @@ public class Ring : MonoBehaviour
         else if (other.CompareTag("red_energy")) {
             kernen_obj = GameObject.Find("kernen");
             Destroy(other.gameObject);
-            kernen_obj.GetComponent<Kernen_script>().energy_collect();
+            kernen_obj.GetComponent<Kernen_script>().energy_collect(true);
         }
     }
 }
