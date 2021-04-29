@@ -10,7 +10,7 @@ public class Kernen_script : MonoBehaviour
     public Shieldbar shieldbar;
 
     int points = 0;
-    public static int coins = 10000;
+    public static int coins = 0;
     public static int highscore = 0;
     public static int highest_streak;
     int streak = 0;
@@ -19,18 +19,18 @@ public class Kernen_script : MonoBehaviour
     int max_shield_integrety = 100;
     int shield_integrety;
     public static int shield_level = 0;
-    public static int[] shield_levels_cost = { 0, 20, 100, 300, 500, 1000, 3000};
+    public static int[] shield_levels_cost = { 0, 20, 80, 300, 500, 1000, 3000};
     public static int[] shield_levels_effect = {40, 80, 130, 200, 250, 300, 400};
 
     // SPEED
     public static int speed_level = 0;
-    public static int[] speed_levels_cost = { 0, 10, 25, 50, 150, 200, 400};
+    public static int[] speed_levels_cost = { 0, 10, 25, 50, 120, 240, 330};
     public static int[] speed_levels_effect = {18, 22, 28, 35, 40, 45, 50};
 
     // LEVELS
     public static int levels_unlocked = 0;
     public static int current_level = 0;
-    public static int[] level_cost = { 0, 50, 120, 300, 500, 700, 1000, 2000};
+    public static int[] level_cost = { 0, 50, 160, 300, 600, 700, 1000, 2000};
 
     // COIN GAINS
     public static int[] coin_gains_for_level = {1, 2, 3, 4, 5, 6};
@@ -45,7 +45,7 @@ public class Kernen_script : MonoBehaviour
     public static bool selected_ability_reverse = false;
     public static int available_ability_reverse = 0;
     public static bool ability_reverse_active = false;
-    public static int reverse_cost = 999;
+    public static int reverse_cost = 500;
 
 
     void Start()
