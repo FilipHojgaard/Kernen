@@ -89,16 +89,22 @@ public class Kernen_script : MonoBehaviour
     }
 
     public void buy_shield_upgrade() {
-        if (coins >= shield_levels_cost[shield_level + 1]) {
-            coins -= shield_levels_cost[shield_level + 1];
-            shield_level++;
+        if (shield_level+1 < shield_levels_effect.Length) {
+            if (coins >= shield_levels_cost[shield_level + 1]) {
+                coins -= shield_levels_cost[shield_level + 1];
+                shield_level++;
+                sfx_manager.GetComponent<sfx_manager_script>().play_shield_buy_sfx();
+            }
         }
     }
 
     public void buy_speed_upgrade() {
-        if (coins >= speed_levels_cost[speed_level + 1]) {
-            coins -= speed_levels_cost[speed_level + 1];
-            speed_level++;
+        if (speed_level+1 < speed_levels_effect.Length) {
+            if (coins >= speed_levels_cost[speed_level + 1]) {
+                coins -= speed_levels_cost[speed_level + 1];
+                speed_level++;
+                sfx_manager.GetComponent<sfx_manager_script>().play_speed_buy_sfx();
+            }
         }
     }
 
@@ -173,10 +179,15 @@ public class Kernen_script : MonoBehaviour
     }
 
     public void buyLevel() {
-        if (coins >= level_cost[current_level + 1]) {
-            coins -= level_cost[current_level + 1];
-            levels_unlocked++;
-            current_level = levels_unlocked;
+        Debug.Log("levels unlocked: " + (levels_unlocked+1));
+        Debug.Log(level_cost.Length-1);
+        if (levels_unlocked+1 < level_cost.Length-1) {
+            if (coins >= level_cost[current_level + 1]) {
+                coins -= level_cost[current_level + 1];
+                levels_unlocked++;
+                current_level = levels_unlocked;
+                sfx_manager.GetComponent<sfx_manager_script>().play_level_buy_sfx();
+            }
         }
     }
 
