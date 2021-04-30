@@ -19,18 +19,18 @@ public class Kernen_script : MonoBehaviour
     int max_shield_integrety = 100;
     int shield_integrety;
     public static int shield_level = 0;
-    public static int[] shield_levels_cost = { 0, 20, 80, 300, 500, 1000, 3000};
-    public static int[] shield_levels_effect = {40, 80, 130, 200, 250, 300, 400};
+    public static int[] shield_levels_cost = { 0, 15, 70, 150, 400, 500, 900, 1200, 1600, 2200};
+    public static int[] shield_levels_effect = {40, 60, 80, 100, 120, 140, 160, 180, 200, 220};
 
     // SPEED
     public static int speed_level = 0;
-    public static int[] speed_levels_cost = { 0, 10, 25, 50, 120, 240, 330};
-    public static int[] speed_levels_effect = {18, 22, 28, 35, 40, 45, 50};
+    public static int[] speed_levels_cost = { 0, 10, 25, 50, 120, 240, 330, 450, 550, 660, 730, 830, 930, 1020, 1150};
+    public static int[] speed_levels_effect = {18, 22, 27, 32, 38, 43, 47, 52, 57, 62, 66, 72, 77, 84, 89};
 
     // LEVELS
     public static int levels_unlocked = 0;
     public static int current_level = 0;
-    public static int[] level_cost = { 0, 50, 160, 300, 600, 700, 1000, 2000};
+    public static int[] level_cost = { 0, 50, 160, 300, 600, 700, 1000};
 
     // COIN GAINS
     public static int[] coin_gains_for_level = {1, 2, 3, 4, 5, 6};
@@ -45,7 +45,7 @@ public class Kernen_script : MonoBehaviour
     public static bool selected_ability_reverse = false;
     public static int available_ability_reverse = 0;
     public static bool ability_reverse_active = false;
-    public static int reverse_cost = 500;
+    public static int reverse_cost = 650;
 
 
     void Start()

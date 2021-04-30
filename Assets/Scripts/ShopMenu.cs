@@ -45,7 +45,7 @@ public class ShopMenu : MonoBehaviour
         }
         // SPEED LABELS
         if (Kernen_script.speed_level+1 < Kernen_script.speed_levels_effect.Length) {
-            next_speed.text = "Upgrade Speed\n" + Kernen_script.speed_levels_effect[Kernen_script.speed_level] + " > " + Kernen_script.speed_levels_effect[Kernen_script.speed_level+1];
+            next_speed.text = "Upgrade Speed\n" + (Kernen_script.speed_level+1) + " > " + (Kernen_script.speed_level+2);
             speed_button_text.text = "Buy for " + Kernen_script.speed_levels_cost[Kernen_script.speed_level + 1];
         }
         else {

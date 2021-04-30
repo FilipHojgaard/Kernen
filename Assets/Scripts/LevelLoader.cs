@@ -147,7 +147,7 @@ public class LevelLoader : MonoBehaviour {
                 GameObject ring_outer = Instantiate(outer_rings[outer_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
                 Ring ring_outer_script = ring_outer.GetComponent<Ring>();
                 ring_outer_script.clockwise = true;
-                ring_outer_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level]*0.8f;
+                ring_outer_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level]*0.6f;
                 ring_outer_script.cruise_speed = 5f;
             }
             if (load_mid_ring) {
@@ -186,7 +186,7 @@ public class LevelLoader : MonoBehaviour {
                 GameObject ring_outer = Instantiate(outer_rings[outer_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
                 Ring ring_outer_script = ring_outer.GetComponent<Ring>();
                 ring_outer_script.clockwise = true;
-                ring_outer_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level]*0.8f;
+                ring_outer_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level]*0.6f;
                 ring_outer_script.cruise_speed = 5f;
             }
 
@@ -219,7 +219,7 @@ public class LevelLoader : MonoBehaviour {
                 GameObject ring_outer = Instantiate(outer_rings[outer_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
                 Ring ring_outer_script = ring_outer.GetComponent<Ring>();
                 ring_outer_script.clockwise = true;
-                ring_outer_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level]*0.8f;
+                ring_outer_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level]*0.6f;
                 ring_outer_script.cruise_speed = 8f;
             }
 
