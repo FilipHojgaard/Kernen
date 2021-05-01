@@ -6,7 +6,7 @@ public class Energy : MonoBehaviour
 {
     public GameObject Kernen;
     Rigidbody2D body;
-    public float speed = 10f;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()

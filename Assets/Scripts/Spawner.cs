@@ -11,12 +11,15 @@ public class Spawner : MonoBehaviour
     public GameObject reverse_energy;
     public float spawn_delay = 5f;
     public float spawn_chance = 70f;
+    public float energy_speed;
 
     public bool red_energy_spawn;
     public float red_energy_change = 10f;
+    public float red_energy_speed;
 
     public bool reverse_energy_spawn;
     public float reverse_energy_chance = 10f;
+    public float reverse_energy_speed;
 
     float y_min = -4;
     float y_max = 4;
@@ -62,16 +65,19 @@ public class Spawner : MonoBehaviour
             Debug.Log(other_spawn);
             if (red_energy_spawn) {
                 if (other_spawn <= red_energy_change) {
-                    Instantiate(red_energy, new Vector2(x, y), gameObject.transform.rotation);
+                    GameObject red_energy_obj =  Instantiate(red_energy, new Vector2(x, y), gameObject.transform.rotation);
+                    red_energy_obj.GetComponent<Energy>().speed = red_energy_speed;
                     return;
                 }
             }if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse) {
                 if (other_spawn <= (red_energy_change + reverse_energy_chance)) {
-                    Instantiate(reverse_energy, new Vector2(x, y), gameObject.transform.rotation);
+                    GameObject reverse_energy_obj = Instantiate(reverse_energy, new Vector2(x, y), gameObject.transform.rotation);
+                    reverse_energy_obj.GetComponent<Energy>().speed = reverse_energy_speed;
                     return;
                 }
             }
-            Instantiate(energy, new Vector2(x, y), gameObject.transform.rotation);
+            GameObject energy_obj = Instantiate(energy, new Vector2(x, y), gameObject.transform.rotation);
+            energy_obj.GetComponent<Energy>().speed = energy_speed;
         }
 
     }

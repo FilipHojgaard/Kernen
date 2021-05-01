@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public GameObject Spawner;
     public GameObject LevelLoader;
     public GameObject Kernen;
+    public GameObject EnergyDisplay;
 
     public UnityEngine.UI.Text highest_streak;
 
@@ -29,6 +30,7 @@ public class MainMenu : MonoBehaviour
         LevelLoader.SetActive(false);
         shieldbar.SetActive(false);
         abilityUI.SetActive(false);
+        EnergyDisplay.SetActive(false);
         //Kernen.SetActive(false);
         Kernen.GetComponent<Kernen_script>().Reset();
         gameObject.SetActive(true);
@@ -49,6 +51,7 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(true);
         abilityUI.SetActive(false);
         shieldbar.SetActive(false);
+        EnergyDisplay.SetActive(false);
     }
 
     public void PlayButton() {
@@ -57,7 +60,8 @@ public class MainMenu : MonoBehaviour
         //Kernen.SetActive(true);
         gameObject.SetActive(false);
         shieldbar.SetActive(true);
-        if(Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse) {
+        EnergyDisplay.SetActive(true);
+        if (Kernen_script.bought_ability_reverse && Kernen_script.selected_ability_reverse) {
             abilityUI.SetActive(true);
         }
     }
@@ -67,6 +71,7 @@ public class MainMenu : MonoBehaviour
         abilityUI.SetActive(false);
         gameObject.SetActive(false);
         shieldbar.SetActive(false);
+        EnergyDisplay.SetActive(false);
     }
 
     public void generic_button_sfx() {

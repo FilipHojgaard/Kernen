@@ -47,6 +47,12 @@ public class LevelLoader : MonoBehaviour {
         else if (Kernen_script.current_level == 5) {
             level6();
         }
+        else if(Kernen_script.current_level == 6) {
+            level7();
+        }
+        else if (Kernen_script.current_level == 7) {
+            level8();
+        }
     }
 
     void level1() {
@@ -70,6 +76,9 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.red_energy_spawn = false;
             spawner_script.red_energy_change = 0f;
             spawner_script.reverse_energy_chance = 14f;
+            spawner_script.energy_speed = 60f;
+            spawner_script.red_energy_speed = 75f;
+            spawner_script.reverse_energy_speed = 60f;
         }
     }
 
@@ -95,6 +104,9 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.red_energy_change = 20f;
             spawner_script.reverse_energy_spawn = true;
             spawner_script.reverse_energy_chance = 14f;
+            spawner_script.energy_speed = 60f;
+            spawner_script.red_energy_speed = 75f;
+            spawner_script.reverse_energy_speed = 60f;
 
         }
     }
@@ -129,6 +141,9 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.red_energy_change = 20f;
             spawner_script.reverse_energy_spawn = true;
             spawner_script.reverse_energy_chance = 20f;
+            spawner_script.energy_speed = 60f;
+            spawner_script.red_energy_speed = 75f;
+            spawner_script.reverse_energy_speed = 60f;
 
         }
     }
@@ -171,6 +186,9 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.red_energy_change = 30f;
             spawner_script.reverse_energy_spawn = true;
             spawner_script.reverse_energy_chance = 35f;
+            spawner_script.energy_speed = 60f;
+            spawner_script.red_energy_speed = 75f;
+            spawner_script.reverse_energy_speed = 60f;
         }
     }
 
@@ -196,6 +214,9 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.red_energy_change = 90;
             spawner_script.reverse_energy_spawn = true;
             spawner_script.reverse_energy_chance = 10f;
+            spawner_script.energy_speed = 60f;
+            spawner_script.red_energy_speed = 75f;
+            spawner_script.reverse_energy_speed = 60f;
         }
     }
 
@@ -229,8 +250,75 @@ public class LevelLoader : MonoBehaviour {
             spawner_script.red_energy_change = 15;
             spawner_script.reverse_energy_spawn = true;
             spawner_script.reverse_energy_chance = 12f;
+            spawner_script.energy_speed = 60f;
+            spawner_script.red_energy_speed = 75f;
+            spawner_script.reverse_energy_speed = 60f;
         }
     }
+
+    void level7() {
+        if (loadLevel) {
+            load_inner_ring = false;
+            load_mid_ring = true;
+            load_outer_ring = false;
+
+            int mid_ring_index = Random.Range(0, mid_rings.Length);
+
+            if (load_mid_ring) {
+                GameObject ring_mid = Instantiate(mid_rings[mid_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
+                Ring ring_mid_script = ring_mid.GetComponent<Ring>();
+                ring_mid_script.clockwise = true;
+                ring_mid_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level] * 0.9f;
+                ring_mid_script.cruise_speed = 15f;
+            }
+
+            spawner_script.spawn_chance = 50f;
+            spawner_script.spawn_delay = 0.4f;
+            spawner_script.red_energy_spawn = false;
+            spawner_script.red_energy_change = 0f;
+            spawner_script.reverse_energy_chance = 16f;
+            spawner_script.energy_speed = 180f;
+            spawner_script.red_energy_speed = 75f;
+            spawner_script.reverse_energy_speed = 180f;
+        }
+    }
+
+    void level8() {
+        if (loadLevel) {
+            load_inner_ring = false;
+            load_mid_ring = true;
+            load_outer_ring = true;
+
+            int mid_ring_index = Random.Range(0, mid_rings.Length);
+            int outer_ring_index = Random.Range(0, outer_rings.Length);
+
+            if (load_mid_ring) {
+                GameObject ring_mid = Instantiate(mid_rings[mid_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
+                Ring ring_mid_script = ring_mid.GetComponent<Ring>();
+                ring_mid_script.clockwise = true;
+                ring_mid_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level] * 0.9f;
+                ring_mid_script.cruise_speed = 5;
+            }
+            if (load_outer_ring) {
+                GameObject ring_outer = Instantiate(outer_rings[outer_ring_index], new Vector2(0, 0), gameObject.transform.rotation);
+                Ring ring_outer_script = ring_outer.GetComponent<Ring>();
+                ring_outer_script.clockwise = true;
+                ring_outer_script.active_speed = Kernen_script.speed_levels_effect[Kernen_script.speed_level] * 0.6f;
+                ring_outer_script.cruise_speed = 8f;
+            }
+
+            spawner_script.spawn_chance = 50f;
+            spawner_script.spawn_delay = 0.32f;
+            spawner_script.red_energy_spawn = true;
+            spawner_script.red_energy_change = 90;
+            spawner_script.reverse_energy_spawn = true;
+            spawner_script.reverse_energy_chance = 10f;
+            spawner_script.energy_speed = 60f;
+            spawner_script.red_energy_speed = 190f;
+            spawner_script.reverse_energy_speed = 190f;
+        }
+    }
+
 
 
     // Update is called once per frame
